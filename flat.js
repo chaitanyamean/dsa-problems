@@ -560,16 +560,35 @@ return -1
   // spiralOrderMatrix(80)
 
 
-  function findAP(arr){
-    let map = new Map()
-
-    for(let i =0; i< arr.length; i++) {
-
+  function findAP(A){
+    let n = A.length;
+  //   for(let i = 0; i<n-1; i++) {
+  //     let min_idx = i
+  //     for(j=i+1; j<=n; j++) {
+  //         if(A[j] < A[min_idx]) {
+  //           min_idx = j
+  //         }
+  //       }
+  //       const temp = A[i]
+  //       A[i] = A[min_idx]
+  //       A[min_idx] = temp
+  // }
+    A = A.sort((a,b) => a-b)
+    console.log("s",A)
+  let isAp = false;
+  let diff = A[1] - A[0]
+  for(let i = 0; i<n-1; i++) {
+    if(A[i+1] - A[i] === diff) {
+      isAp = true
+    } else {
+      isAp = false
     }
+  }
+  console.log(A, isAp)
   }
 
 
-  findAP([2,4,6,8])
+  // findAP([6,8,2,4,12])
 
   // find first and second min values
 
@@ -585,15 +604,15 @@ function findColor(arr){
 }
 
 
-findColor([0,0,1,2,1,2,0])
+// findColor([0,0,1,2,1,2,0])
 
-
+// wave problem need to add + 2 while iterating
 function sinosidalArray(A) {
   let B = A.sort(function(a, b) {
     return a - b;
   });
-
-  for(let i = 0; i<B.length; i=i+2) {
+console.log(B)
+  for(let i = 0; i<B.length-1; i=i+2) {
       let temp = B[i]
       B[i] = B[i+1]
       B[i+1] = temp
@@ -603,7 +622,7 @@ function sinosidalArray(A) {
 
 }
 // sinosidalArray([2,3,4,10,0,8])
-
+sinosidalArray([5, 1, 3, 2, 4])
 /*
 // this is a special problem we can loop the i from 0 to i<=B-1
 
@@ -627,4 +646,51 @@ function findKthElementInArray(A, B){
 }
 
 
-findKthElementInArray([64,25,12,22,11],3)
+// findKthElementInArray([64,25,12,22,11],3)
+
+
+ function ssIndex(A){
+  let n = A.length;
+
+  let map = new Map()
+
+  // for(let i = 0; i< A.length; i++) {
+  //       map.set(A[i], i)
+  // }
+  // console.log(map)
+  let res = []
+  for(let i = 0; i<n-1; i++) {
+      let min_idx = i
+      for(j=i+1; j<=n; j++) {
+          if(A[j] < A[min_idx]) {
+            min_idx = j
+          }
+        }
+        // console.log(min_idx)
+        const temp = A[i]
+        A[i] = A[min_idx]
+        A[min_idx] = temp
+        res.push(min_idx)
+  }
+
+  console.log(A)
+  console.log(res)
+
+
+  return A
+
+}
+
+
+// ssIndex([6, 4, 3, 7, 2, 8])
+
+
+
+var arr1 = ['a','b','c','d','e','f'];
+var arr2 = arr1;  // Reference arr1 by another variable 
+arr1 = [];
+arr1.push('z')
+console.log(arr2);
+
+
+
