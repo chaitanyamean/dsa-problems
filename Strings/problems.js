@@ -324,4 +324,20 @@ function largestNumber(A) {
 }
 
 
-largestNumber([3, 30, 34, 9, 5])
+// largestNumber([3, 30, 34, 9, 5])
+
+
+
+
+function lexograpicallyLargest(A) {
+    let strOfArray = A.split('_');
+    if(strOfArray[0][0].charCodeAt(0) < strOfArray[1].charCodeAt(0)) {
+        let finalStr = strOfArray[1]
+        for(let i=1; i<strOfArray[0].length; i++) {
+            finalStr += strOfArray[0][i]
+        }
+        console.log(finalStr)
+    }
+}
+
+lexograpicallyLargest('abb_c')
