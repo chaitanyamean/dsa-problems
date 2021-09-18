@@ -331,13 +331,94 @@ function largestNumber(A) {
 
 function lexograpicallyLargest(A) {
     let strOfArray = A.split('_');
-    if(strOfArray[0][0].charCodeAt(0) < strOfArray[1].charCodeAt(0)) {
-        let finalStr = strOfArray[1]
-        for(let i=1; i<strOfArray[0].length; i++) {
-            finalStr += strOfArray[0][i]
-        }
-        console.log(finalStr)
+    let S = strOfArray[0];
+    let T = strOfArray[1].split('');
+    let count = 0;
+    let newStr = ''
+    let j = 0
+    T.sort((a,b) => a >b ? -1 : 1)
+    let sortedStr = T.join('')
+    console.log(sortedStr)
+    for(let i = 0; i<S.length && j<sortedStr.length; i++) {
+        if(S[i].charCodeAt(0) < sortedStr[j].charCodeAt(0)) {
+            // console.log(S[i], sortedStr[j], S.replace(S[i], sortedStr[j]))
+        //    newStr += S.replace(S[i], sortedStr[j])
+        newStr += sortedStr[j]
+            
+        } 
+        j++
     }
+    if(S.length > j) {
+        console.log(S)
+        for(let i = j; i<S.length; i++) {
+            newStr += S[i]
+        }
+    }
+
+    console.log('ans', newStr);
+
+    
 }
 
-lexograpicallyLargest('abb_c')
+// lexograpicallyLargest('psafelqnoe_eflqypyqecbrvxyoagogravxvlmrirxitihomztvjmenihqvfu')
+// lexograpicallyLargest('abb_c')
+// lexograpicallyLargest('ittmcsvmoa_jktvvblefw')  // wvvtlkjfeb
+
+
+// abcdefght_zyxwv
+
+// zyxwvfght
+
+
+function sortingProb(A, B) {
+    A.sort()
+    console.log(A)
+    let min= Number.MAX_VALUE;
+    let max = Number.MIN_VALUE;
+    let newMap = new Map()
+    for(let i = 0; i<A.length; i++) {
+        min = Math.min(A[i], min)
+        max = Math.max(A[i], max)
+
+        if(newMap.has(A[i])) {
+            let val = newMap.get(A[i])
+            newMap.set(A[i], val+1);
+        } else {
+            newMap.set(A[i], 1);
+        }
+    }
+    console.log(newMap, min, max)
+
+    while((min < max) && B != 0) {
+        let minMapValue = newMap.get(min)
+        let maxMapValue = newMap.get(max)
+        
+        if(newMap.get(min) < newMap.get(max)) {
+            
+            if(B < newMap.get(min)) {
+                break;
+            }
+            
+            // newMap.get(min+1) =
+            let nextVal = newMap.get(min+1)
+            
+            newMap.set(min+1, nextVal+minMapValue)
+            B = B - minMapValue;
+            min++
+        } else {
+            if(B < newMap.get(max)) {
+                break;
+            }
+            let nextVal = newMap.get(max-1)
+            newMap.set(max-1, nextVal+maxMapValue)
+            B = B - maxMapValue;
+            max--
+        }
+    }
+    return (max - min)
+}
+
+
+console.log(
+    sortingProb([2, 8, 3, 7, 8, 7, 9 ], 9)
+    )

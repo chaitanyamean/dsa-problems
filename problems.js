@@ -18,12 +18,12 @@ function sortTypes(arr) {
             } 
     }
     res = [...numbers, ...string, ...floats]
-    // console.log(res)
+    console.log(res)
 }
 
 
 
-sortTypes(arr)
+// sortTypes(arr)
 
 
 
@@ -38,19 +38,26 @@ function getDetails(age, place) {
 } 
 
 let details = getDetails.bind(obj, 2, 'Hyd')
-// console.log('details', details());
+console.log('details', details());
 
-Function.prototype.mybind = function(...args){
-    const obj = this
-    let params = args.slice(1);
-    // console.log('this',args[0])
-    return function(...args2) {
-        obj.apply(args[0], [...params, ...args2])
+// Function.prototype.myBind = function(...args){
+//     const obj = this
+//     let params = args.slice(1);
+//     // console.log('this',args[0])
+//     return function(...args2) {
+//         return obj.apply(args[0], [...params, ...args2])
+//     }
+// }
+
+Function.prototype.myBind = function(ctx, ...fnArgs) {
+    const func = this;
+
+    return function() {
+        console.log('ctx',ctx, 'afgs', ...fnArgs)
+        return func.call(ctx, ...fnArgs)
     }
 }
-// console.log(
-//     getDetails.mybind(obj, 2, 'Hyd')()
-//     )
+// console.log(getDetails.myBind(obj, 2, 'Hyd')())
 
 let add = function(a) {
     return function(b) {
@@ -73,9 +80,7 @@ let add = function(a) {
 function revStr(str){
     let revStr = ''
     let n = str.length
-    // for(i= n-1; i>=0;i--){
-    //     revStr += str[i]
-    // }
+    
     for(let i = 0; i<n/2; i++) {
         console.log(n-i-1, str[i], str[n-i-1])
         let temp = str[i]
@@ -89,7 +94,7 @@ function revStr(str){
 }
 
 
-revStr('abcd')
+// revStr('abcd')
 
 
 function reverseWords(str){

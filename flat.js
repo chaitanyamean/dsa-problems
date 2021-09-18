@@ -6,11 +6,10 @@ function processing(arr) {
     if (Array.isArray(currentElement)) {
       output = output.concat(processing(currentElement));
     } else {
-        // output.push(currentElement);
         output = [...output, currentElement];
     }
 }
-  // console.log(output);
+  console.log(output);
   return output
 
   // .flatMap
@@ -622,7 +621,7 @@ console.log(B)
 
 }
 // sinosidalArray([2,3,4,10,0,8])
-sinosidalArray([5, 1, 3, 2, 4])
+// sinosidalArray([5, 1, 3, 2, 4])
 /*
 // this is a special problem we can loop the i from 0 to i<=B-1
 
@@ -690,7 +689,60 @@ var arr1 = ['a','b','c','d','e','f'];
 var arr2 = arr1;  // Reference arr1 by another variable 
 arr1 = [];
 arr1.push('z')
-console.log(arr2);
+// console.log(arr2);
 
 
+
+function pascalTrainge(A) {
+    let arr = []
+    for(let i = 0; i<A; i++) {
+      arr.push([])
+    }
+    let i = 0;
+    while(i<A) {
+      for(let j=0; j<A; j++) {
+        arr[i].push(0)
+      }
+      i++
+    }
+    i =0;
+    while(i<A) {
+      for(let j=0; j<=i; j++) {
+        if(j == 0) {
+          arr[i][j] = 1
+        } else {
+          arr[i][j] = arr[i-1][j] + arr[i-1][j-1]
+        }
+      }
+      i++
+    }
+
+    console.log(arr)
+
+}  // TC O(N^2) SC O(N^2)
+
+
+
+// pascalTrainge(3)
+
+function elementRemoval(A) {
+  let sum = 0
+	    let ans = 0
+	    A.sort((a,b) => a-b)
+	    for(let i=0;i<A.length; i++) {
+	        sum += A[i]
+	        ans = sum
+	    }
+	    console.log(A, sum, ans)
+	    for(let j = A.length-1; j>=0; j--) {
+        console.log("AJJ",A[j])
+	        sum -= A[j]
+	        ans += sum
+	    }
+      console.log(ans)
+	    return ans
+	    
+}
+
+// elementRemoval([8, 0, 10])
 
