@@ -76,4 +76,34 @@ function beggersOutside(A, B) {
 
 
 // Return: [10, 55, 45, 25, 25]
-beggersOutside(5, [[1, 2, 10], [2, 3, 20], [2, 5, 25]])
+// beggersOutside(5, [[1, 2, 10], [2, 3, 20], [2, 5, 25]])
+
+// Pairs With Given Xor
+// A ^ B = C and A ^ C = B
+function pairsWithXor(A,B) {
+    console.log(A,B)
+    let map = new Map()
+    for(let i = 0; i<A.length; i++) {
+        if(map.has(A[i])) {
+            let val = map.get(A[i])
+            map.set(A[i], val+1)
+        } else {
+            map.set(A[i], 1)
+        }
+    }
+    console.log(map)
+    let cnt = 0;
+    for(let i = 0; i<A.length; i++) {
+        let C = A[i] ^ B
+        if(map.has(C)) {
+            cnt++
+        }
+    }
+    console.log(cnt/2);
+
+}
+
+
+
+// pairsWithXor([5, 4, 10, 15, 7, 6], 5)
+pairsWithXor([3, 6, 8, 10, 15, 50], 5)
