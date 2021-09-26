@@ -106,4 +106,26 @@ function pairsWithXor(A,B) {
 
 
 // pairsWithXor([5, 4, 10, 15, 7, 6], 5)
-pairsWithXor([3, 6, 8, 10, 15, 50], 5)
+// pairsWithXor([3, 6, 8, 10, 15, 50], 5)
+
+
+
+
+// function reArrangeArray(A) {
+//     A.sort((a,b) => a-b)
+        
+//         for(let i =0; i<A.length-1; i=i+2) {
+//             let temp = A[i]
+//             A[i] = A[i+1]
+//             A[i+1] = temp
+//         }
+        
+//         return A
+
+// }
+
+// console.log(reArrangeArray([5,1,3,2,4]))
+// console.log(reArrangeArray([1,2]))
+// console.log(reArrangeArray([1,2,3,4]))
+
+
