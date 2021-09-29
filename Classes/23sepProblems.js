@@ -27,7 +27,7 @@ function minSubSortedArray(A) {
 
   let ans = right - left;
 
-  console.log(left, right, ans);
+  // console.log(left, right, ans);
 }
 
 // minSubSortedArray([-146316343, 179840175, 760528516])
@@ -64,4 +64,39 @@ function contigousArray(A) {
   console.log(map, larNum);
 }
 
-contigousArray([1, 1, 0, 0, 1, 1, 0, 1, 1]);
+// contigousArray([1, 1, 0, 0, 1, 1, 0, 1, 1]);
+
+
+///  SUM the difference
+
+function sumTheDiff(A) {
+  console.log(A);
+
+  let min = 0;
+  let max = 0;
+  let n = A.length;
+  A.sort((a,b) => a-b)
+  let val2 = 1
+  let mod = 1000000007
+  for(let i =0;i<A.length; i++) {
+    let add = val2 * A[i]
+    max += add
+    val2 = val2 * 2
+    val2 %= mod
+    max %= mod
+    
+  }
+    let minVal = 1
+  for(let i=n-1; i>=0;i--) {
+      let add = A[i] * minVal
+      min += add
+      min %= mod
+      minVal = minVal * 2
+      minVal %= mod
+  }
+  
+  return max - min;
+}
+
+
+console.log(sumTheDiff([1,3,2,5,7]))

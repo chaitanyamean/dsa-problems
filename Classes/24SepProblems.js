@@ -222,10 +222,11 @@ function intersectionofSortedArrays2(A,B) {
             i++
         } else if(A[i]>B[j]) {
             j++
-        } else if(A[i] == B[i]) {
+        } else if(A[i] == B[j]) {
+            arr.push(A[i])
             i++;
             j++;
-            arr.push(A[i])
+            // console.log(A,A[i],i);
         }
 
     }
@@ -235,4 +236,4 @@ function intersectionofSortedArrays2(A,B) {
 }
 
 
-console.log(intersectionofSortedArrays2(A,B))
+console.log(intersectionofSortedArrays2([1],[1]))
