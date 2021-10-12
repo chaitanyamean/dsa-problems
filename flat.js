@@ -723,7 +723,7 @@ function pascalTrainge(A) {
 
 
 
-// pascalTrainge(3)
+pascalTrainge(3)
 
 function elementRemoval(A) {
   let sum = 0
