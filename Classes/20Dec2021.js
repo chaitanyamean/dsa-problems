@@ -149,4 +149,76 @@ function waveArray(A) {
 }
 
 
-console.log(waveArray([3, 6, 5, 10, 7, 20]))
+// console.log(waveArray([3, 6, 5, 10, 7, 20]))
+
+// Q4. MaxMod
+
+function maxMod(A,N) {
+
+  let first = Number.MIN_VALUE;
+  let second = Number.MIN_VALUE;
+
+  for(let i =0; i<N-1; i++) {
+
+    if(first<A[i]) {
+      second = first
+      first = A[i]
+    } else if(second < A[i] && A[i] != first) {
+        second = A[i]
+    }
+  }
+  if(second != Number.MIN_VALUE) return second
+  return 0
+
+}
+
+// maxMod([1,1,2],3)
+
+
+// https://www.guru99.com/quicksort-in-javascript.html
+function swap(items, leftIndex, rightIndex){
+  var temp = items[leftIndex];
+  items[leftIndex] = items[rightIndex];
+  items[rightIndex] = temp;
+}
+
+function partition(items, left, right) {
+  var pivot   = items[Math.floor((right + left) / 2)], //middle element
+  i       = left, //left pointer
+  j       = right; //right pointer
+  console.log(pivot)
+  while (i <= j) {
+      while (items[i] < pivot) {
+        console.log('test')
+          i++;
+      }
+      while (items[j] > pivot) {
+          j--;
+      }
+      if (i <= j) {
+          swap(items, i, j); //swap two elements
+          i++;
+          j--;
+      }
+  }
+  console.log(items)
+  return i;
+}
+var items = [5,3,7,6,2,9];
+
+function quickSort(items, left, right) {
+  var index;
+  if (items.length > 1) {
+      index = partition(items, left, right); //index returned from partition
+      if (left < index - 1) { //more elements on the left side of the pivot
+          quickSort(items, left, index - 1);
+      }
+      if (index < right) { //more elements on the right side of the pivot
+          quickSort(items, index, right);
+      }
+  }
+  return items;
+}
+// first call to quick sort
+var result = quickSort(items, 0, items.length - 1);
+console.log(result);
