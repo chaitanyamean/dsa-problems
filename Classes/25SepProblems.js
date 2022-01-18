@@ -100,4 +100,111 @@ function smallestSeq(A, B, C, D) {
   console.log(arr);
 }
 
-smallestSeq(2, 5, 7, 8);
+// smallestSeq(2, 5, 7, 8);
+
+
+function maxSumSquareSubMatrix(A, B) {
+  // A = A.sort((a,b) => a-b)
+  // console.log(A, A.length)
+  let sum = 0
+  let minNum = -Infinity;
+  for(let i =0; i<A.length; i++) {
+    sum += A[i]
+    if(i >= B-1) {
+      console.log(i);
+      minNum = Math.max(sum, minNum)
+      sum -= A[i-(B-1)]
+    }
+  }
+  console.log(sum, minNum)
+
+}
+
+// 595
+
+
+// let A  =[ 66, 23, 687, 252, 187, 114, 789, 527, 129, 474, 679, 119, 687, 92, 578, 332, 781, 499, 597, 370, 848, 248, 496, 641, 714, 572, 399, 187, 910, 638, 100, 975, 660, 786, 227, 198, 252, 367, 725 ]
+// let B = 29
+
+// maxSumSquareSubMatrix(A,B)
+// maxSumSquareSubMatrix([1,2,3,5,4,8,6,2], 3)
+
+
+
+
+function sumOfSubMatrix(A,B,C,D,E) {
+  console.log(B)
+      let r = A.length
+      let c = A[0].length
+      let res = []
+
+      let p = new Array(r)
+
+      for(let i =0; i<r; i++) {
+          p[i] = new Array(c)
+          for(let j=0; j<C; j++){
+            p[i][j] = 0
+          }
+      }
+      p[0][0] = A[0][0]
+      for(let i =1; i<r; i++) {
+        p[i][0] = p[i-1][0] + A[i][0] // row
+      }
+      for(let j =1; j<c; j++) {
+        p[0][j] = p[0][j-1] + A[0][j]
+      }
+
+      for (let i = 1; i < r; i++){
+        for (let j = 1; j < c; j++) {
+          p[i][j] = p[i - 1][j] + p[i][j - 1]
+          - p[i - 1][j - 1] + A[i][j];
+        }
+      }
+
+                  res.push(getQuerySum(p,B[0]-1,C[0]-1, B[1]-1, C[1]-1))
+                  res.push(getQuerySum(p,D[0]-1,E[0]-1, D[1]-1, E[1]-1))
+
+
+      console.log(r,c,p, res)
+}
+
+function getQuerySum(aux, tli, tlj, rbi, rbj) {
+  console.log(tli, tlj, rbi, rbj)
+  var res = aux[rbi][rbj];
+     
+  // Remove elements between (0, 0)
+  // and (tli-1, rbj)
+  if (tli > 0)
+      res = res - aux[tli-1][rbj];
+
+  // Remove elements between (0, 0)
+  // and (rbi, tlj-1)
+  if (tlj > 0)
+      res = res - aux[rbi][tlj-1];
+
+  // Add aux[tli-1][tlj-1] as elements
+  // between (0, 0) and (tli-1, tlj-1)
+  // are subtracted twice
+  if (tli > 0 && tlj > 0)
+      res = res + aux[tli-1][tlj-1];
+
+  return res;
+
+
+}
+
+
+let A = [
+  [5, 17, 100, 11]
+  [0, 0, 2, 8]
+]
+
+let B = [1, 1]
+let C = [1, 4]
+let D = [2, 2]
+let E = [2, 4]
+
+
+
+
+sumOfSubMatrix(A,B,C,D,E)

@@ -99,4 +99,47 @@ function sumTheDiff(A) {
 }
 
 
-console.log(sumTheDiff([1,3,2,5,7]))
+// console.log(sumTheDiff([1,3,2,5,7]))
+
+
+// Minimum Difference Puzzle
+
+function minDiffPuzzle(A,B) {
+  A.sort((a,b) => a-b)
+  let min = Number.MAX_VALUE
+  let max = Number.MIN_VALUE
+  let res = 1000000000
+  let n = A.length
+  // n-B = 6-2
+  // 5 7 10 10 12 22
+  for(let i =0; i<=n-B; i++) {
+    console.log(A[i], A[i+B-1]);
+    min = A[i]
+    max = A[i+B-1]
+    res = Math.min(res, max-min)
+  }
+  console.log(res);
+  return res;
+// console.log(min, max);
+//     let curr_sum = res
+//   for(let i = B; i<A.length; i++) {
+//         console.log(B, A[i], A[i-B+1]) //B i
+//         min = Math.min(min,A[i-B+1])
+//         max = Math.max(max, A[i-B+1])
+//         res = max-min
+//   }
+//   console.log(min, max);
+
+  // console.log(A, data, min, max);
+}
+
+let A=[10, 12, 10, 7, 5, 22]
+let B=4
+
+minDiffPuzzle(A,B)
+
+
+
+// 1. Understanding the problem statement
+// 2. Intution what mistakes did I Do
+// 3. corner cases/ Errors/Debug/ index problems/ index became -ve/ forgot [] base condition
