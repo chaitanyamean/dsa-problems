@@ -7,15 +7,12 @@
 
 function rainWaterTrapped(A) {
     let n = A.length
-    
     if(n <= 2) return 0;
-    
     let left_max = A[0]
     let right_max = A[n-1]
     let trappedWater = 0;
     let left = 1
     let right = n-2
-
     while(left <= right) {
         if(left_max < right_max) {
             if(A[left] >= left_max) {
@@ -38,4 +35,4 @@ function rainWaterTrapped(A) {
 
 
 console.log(rainWaterTrapped([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 ]))
-// console.log(rainWaterTrapped([1,2]))
+// console.log(rainWaterTrapped("Ans", [1, 5, 4, 3]))

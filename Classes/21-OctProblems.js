@@ -95,35 +95,62 @@ function firstMissingInteger(A) {
 // Q3. Merge Intervals
 function mergeIntervals(intervals, new_intervals) {
   const merged = [];
-
   let total = [...intervals, new_intervals];
   total.sort((a, b) => a[0] - b[0]);
-
-  total.sort((a, b) => {
-    if(a[0] == b[0])return -a[1] + b[1];
-    return a[0] - b[0];
-});
-
+  // total.sort((a, b) => {
+  //   if (a[0] == b[0]) return -a[1] + b[1];
+  //   return a[0] - b[0];
+  // });
+  console.log("Total", total)
   let buffer = total[0];
-
+  // console.log(buffer);
   for (let i = 1; i < total.length; i++) {
-    
-        if(total[i][0] <= buffer[1]) {
-            buffer = [buffer[0], Math.max(buffer[1], total[i][1])]
-        } else {
-            merged.push(buffer)
-            buffer = total[i]
-        }
-
+    if (total[i][0] <= buffer[1]) {
+      buffer = [buffer[0], Math.max(buffer[1], total[i][1])];
+      console.log("BB", buffer)
+    } else {
+      merged.push(buffer);
+      buffer = total[i];
+    }
   }
-  merged.push(buffer)
+  merged.push(buffer);
   return merged;
 }
 
-console.log(mergeIntervals(
-  [
-    [1, 3],
-    [6, 9],
-  ],
-  [2, 5]
-));
+console.log(
+  mergeIntervals(
+    [
+      [1, 3],
+      [6, 9],
+    ],
+    [2, 5]
+  )
+);
+
+
+// Q4. Merge Overlapping Intervals
+
+function mergeOverLappingIntervals(A) {
+  // 
+  let merged = []
+  let buffered = A[0]
+  for(let i = 1; i<A.length; i++) {
+    if(A[i][0] <= buffered[1]) {
+      buffered = [buffered[0], Math.max(buffered[1], A[i][1])]
+    } else {
+      merged.push(buffered)
+      buffered = A[i]
+    }
+  }
+
+  merged.push(buffered)
+  return merged
+
+    // 
+
+}
+
+let ABC = [[1,3],[2,6],[8,10],[15,18]]
+let A111 = [ [1, 10], [2, 9], [3, 8], [4, 7], [5, 6], [6, 6] ]
+
+console.log(mergeOverLappingIntervals(A111))

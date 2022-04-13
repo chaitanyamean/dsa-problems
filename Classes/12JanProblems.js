@@ -94,9 +94,6 @@ function sortArrayInGivenOrder(A, B) {
       mp.set(A[i], 1);
     }
   }
-
-  console.log(mp);
-
   let arr = []
   for (let j = 0; j < B.length; j++) {
       if(mp.has(B[j])) {
@@ -118,11 +115,7 @@ function sortArrayInGivenOrder(A, B) {
         }
     }
   }
-
-  console.log(arr, mp)
   return arr;
-
-
 }
 
 let A1 = [15, 5, 10, 6, 14],

@@ -51,7 +51,7 @@ function closestPalendrome(A) {
     let j = A.length-1
     let i =0
     count = 0
-    while(i<j) { // 0,5 
+    while(i<j) {
         console.log(A[i], A[j])
         if(A[i] != A[j]) {
             count++
@@ -78,7 +78,6 @@ function closestPalendrome(A) {
 function isPalendrome(A) {
     let i =0
     let j = A.length-1
-
     while(i<=j) {
         if(A[i] == A[j]) {
             i++
@@ -87,13 +86,10 @@ function isPalendrome(A) {
             return false
         }
     }
-
     return true
 }
 // Q3. Make String Pallindrome
 function makeStringPallindrome(A) {
-    // abc
-    let P = A
     let count = 0
     let flag = 0
     for(let i =0; i<A.length; i++) {
@@ -109,7 +105,6 @@ function makeStringPallindrome(A) {
         return count
     }
 }
-
-console.log(makeStringPallindrome('babb'))
+makeStringPallindrome('babb')
 
 // console.log(isPalendrome('madam'))

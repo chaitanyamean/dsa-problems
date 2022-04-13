@@ -490,3 +490,46 @@ function product_Range(a,b) {
   }
 //   https://leetcode.com/problems/unique-paths/discuss/408725/JavaScript-O(n)time-O(1)space-w-explanation-using-Combinatorics
   gridUniquePaths(15,9)
+
+function generateLPSArray(S) {
+
+  let M = S.length;
+  let lps = new Array(M)
+
+  let i = 0;
+  lps[0] = 0;
+  let j = 1;
+  while(j < M) {
+    // if S[i] == S[j]
+    if(S[i] == S[j]) {
+      i++
+      lps[j] = i; 
+      j++
+    } else {
+      if(i != 0) {
+        i = lps[i-1];
+      } else {
+        lps[j] = 0;
+        j++
+      }
+    }
+  }
+
+  return lps;
+
+}
+
+  function makeStringPalindrome(A) {
+    let s=A;
+    let revS = s.split('').reverse().join('')
+    console.log(revS)
+    let str = s + '$' + revS
+    let lpsArray = generateLPSArray(str)
+    console.log(lpsArray)
+
+    return (A.length - lpsArray[lpsArray.length-1]);
+
+  }
+
+
+  console.log(makeStringPalindrome('abc'))
